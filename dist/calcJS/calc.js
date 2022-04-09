@@ -22,6 +22,11 @@ addTheme(calBody, themeThree, "theme-two", "theme-one")
 addTheme(calBody, themeTwo, "theme-one", "theme-two")
 
 
+function calcEval(calcResult){
+    return Function(`return ${calcResult}`)();
+}
+
+
 calcKeys.map((calcKey) =>{
     calcKey.addEventListener('click', (e) =>{
         switch(e.target.textContent){
@@ -32,7 +37,8 @@ calcKeys.map((calcKey) =>{
                 if (result.value != ''){
 
                     try{
-                        result.value = eval(result.value)
+                        result.value = parseFloat(calcEval(result.value))
+                    
                     }
                     catch{
                         result.value = "Syntax Error"
